@@ -10,14 +10,15 @@
     <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"
         integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc"
         crossorigin="anonymous"></script>
+    <link rel="stylesheet" href={% block stylesheet %}{% endblock stylesheet %}>
 
     {% block extralink %}    {% endblock extralink %}
 
-    <title>Document</title>
+    <title>{% block title %}{% endblock title %}</title>
 </head>
 
 <body>
-{% load static %}
+    {% load static %}
     <nav class="navbar navbar-light sticky-top navbar-expand-lg fixed-top" style="z-index: 1;">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Offcanvas navbar</a>
