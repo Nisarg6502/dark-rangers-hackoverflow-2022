@@ -1,6 +1,7 @@
 from django.shortcuts import render, HttpResponse, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+from math import ceil
 from .models import CustomUser, Contact, Book
 
 
@@ -161,3 +162,33 @@ def postbook(request):
         thank = True
 
     return render(request, 'dashboard.html', {'thank': thank})
+
+def searchMatch(query, item):
+    print("Item to search is ", item.book_name)
+    if query in item.description.lower() or query in item.book_name:
+        print("Inside ifff")
+        return True
+    else:
+        return  False
+def search(request):
+    query = request.GET.get('search')
+    # print(query)
+    allProds = []
+    catprods = Book.objects.values('book_name')
+    print(catprods)
+    cats = {item['book_name'] for item in catprods}
+    for cat in cats:
+        prodtemp = Book.objects.filter(book_name=cat)
+        print(prodtemp)
+        prod = [item for item in prodtemp if searchMatch(query, item)]
+        # print(prod)
+        n = len(prod)
+
+        nSlides = n // 4 + ceil((n / 4) - (n // 4))
+        if len(prod) != 0:
+            allProds.append([prod,range(8), range(1, nSlides), nSlides])
+    params = {'allProds': allProds, "msg": ""}
+    print("params is :", params)
+    if len(allProds)==0 or len(query)<4:
+        params = {'msg': "Please make sure to enter relevant search query"}
+    return render(request, 'search.html', params)
