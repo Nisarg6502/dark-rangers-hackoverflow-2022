@@ -1,7 +1,7 @@
 from django.shortcuts import render, HttpResponse, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from .models import CustomUser
+from .models import CustomUser, Contact, Book
 
 
 # Create your views here.
@@ -18,7 +18,17 @@ def product(request):
     return render(request, 'product.html')
 
 def contact(request):
-    return render(request, 'contact.html')
+    thank = False
+    if request.method == "POST":
+        name = request.POST.get('name', '')
+        email = request.POST.get('email', '')
+        subject = request.POST.get('subject', '')
+        query = request.POST.get('query', '')
+        contact = Contact(name=name, email=email, subject=subject, query=query)
+        contact.save()
+        thank = True
+
+    return render(request, 'contact.html', {'thank': thank})
 
 def signuppage(request):
     return render(request, 'signup.html')
@@ -40,3 +50,42 @@ def signup(request):
         messages.success(request, 'Your Kronos account has been successfully created!')
         user.save()
     return redirect('website')
+
+def logoutUser(request):
+    logout(request)
+    print("Logged out")
+    return redirect('website')
+
+def loginUser(request):
+    if request.method == "POST":
+        username = request.POST.get('login_username')
+        password = request.POST.get('login_password')
+
+        user = authenticate(request, username = username, password = password)
+
+        if user is not None:
+            login(request, user)
+            messages.success(request, "Successfully logged in")
+            print("success login")
+            return redirect('website')
+        else:
+            messages.error(request, "Error login")
+            print("Error login")
+            return redirect('website')
+
+def postbook(request):
+    if request.method == "POST":
+        book_name = request.POST.get('book_name', '')
+        image = request.POST.get('image', '')
+        author = request.POST.get('author', '')
+        publishing_house = request.POST.get('publishing_house', '')
+        ISBN_number = request.POST.get('ISBN_number', '')
+        availability = request.POST.get('availability')
+        description = request.POST.get('description')
+        provider = request.user
+        # provider = current_user.username
+        book = Book(provider=provider, book_name=book_name, image=image, author=author, publishing_house=publishing_house, ISBN_number=ISBN_number, availability=availability, description=description)
+        book.save()
+        thank = True
+
+    return render(request, 'dashboard.html', {'thank': thank})

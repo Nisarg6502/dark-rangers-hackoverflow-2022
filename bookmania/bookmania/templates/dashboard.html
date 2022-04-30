@@ -1,10 +1,81 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-dashboard
-</body>
-</html>
+{% extends 'basic.html' %}
+
+{% load static %}
+
+
+
+{% block title %}Index{% endblock title %}
+
+{% block body %}
+
+<div class="container1"><br>
+    <form action="/postbook/" method="post" style="text-align: center;">
+        {% csrf_token %}
+        <div class="main2" style="margin-left: 50px; margin-right: 50px;">
+
+                <div class="col-md">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" name="book_name" id="book_name">
+                        <label for="book_name">Enter Book Name</label>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                  <label for="image" class="form-label">image</label>
+                  <input class="form-control" type="file" id="image" name="image">
+                </div>
+
+                <div class="col-md">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" name="author" id="author">
+                        <label for="author">Enter Author</label>
+                    </div>
+                </div>
+
+                <div class="col-md">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" name="publishing_house" id="publishing_house">
+                        <label for="publishing_house">Enter publishing_house</label>
+                    </div>
+                </div>
+
+                <div class="col-md">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" name="ISBN_number" id="ISBN_number">
+                        <label for="ISBN_number">Enter ISBN_number</label>
+                    </div>
+                </div>
+
+                <select class="form-select" aria-label="Default select example" name="availability">
+                  <option selected>Lend</option>
+                  <option value="1">Exchange</option>
+                  <option value="2">Donate</option>
+                </select>
+
+            <div class="mb-3">
+                <div class="form-floating">
+
+                    <input type="text" name="description" class="form-control" id="description" style="height: 200px;">
+                    <label for="description">Book Description</label>
+                </div>
+            </div>
+
+
+        </div>
+
+        <!--Send Message Button-->
+        <button type="submit" class="btn  btn-outline-secondary" style="margin: 10px;">
+            Send message
+        </button>
+
+        <!--Reset Form Button-->
+        <button type="reset" class="btn btn-outline-secondary">
+            Reset form
+        </button>
+    </form>
+    <br>
+</div>
+
+
+{% endblock body %}
+

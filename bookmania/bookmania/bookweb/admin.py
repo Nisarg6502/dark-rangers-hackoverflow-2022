@@ -1,5 +1,5 @@
 # admin.py
-from .models import Book
+from .models import Book, Contact
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
@@ -52,3 +52,4 @@ class CustomUserAdmin(UserAdmin):
 admin.site.register(CustomUser, CustomUserAdmin)
 
 admin.site.register(Book)
+admin.site.register(Contact)
