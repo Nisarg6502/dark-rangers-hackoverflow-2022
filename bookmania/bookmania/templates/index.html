@@ -10,36 +10,133 @@
 
 <div class="container">
 
-    {% for cats,range1,range2,book in allBooks %}
+    <div class="container px-4 py-3 just" id="hanging-icons">
+        <center>
+            <h2 class="pb-2 border-bottom">About Us</h2>
+            <p style="padding-top:1rem">Swapit offers a platform for Bookworms and amateur readers alike to exchange
+                their books and meet people with whom they
+                can exchange their thoughts. <strong>Exchange your pages, and thoughts</strong></p>
+        </center>
+
+    </div>
+    <div class="container px-4 py-5" id="hanging-icons">
+        <center>
+            <h2 class="pb-2 border-bottom">Main Features</h2>
+        </center>
 
 
-    {% comment %} {%for j in range1%} {% endcomment %}
-    <div class="row row-cols-1 row-cols-md-2 g-4">
+        <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+            <!--FIRST FEATURE-->
+            <div class="col d-flex align-items-start" style="padding-left: 30px;padding-right: 30px;">
+                <div class="icon-square bg-light text-dark flex-shrink-0 me-3">
+                    <i class="fas fa-cog" style="font-size: 90px; background-color: white; color: rgb(80, 80, 80);"></i>
+                </div>
+                <div>
+                    <h2>Customizations</h2>
+                    <p>Customized products for you or your company. Various Customizations available, visit
+                        Customization section to learn more.</p>
+                </div>
+            </div>
 
-        {%for k in book%}
-        {% if forloop.counter|divisibleby:4 and forloop.counter > 0 and not forloop.last %}
-        </div>
-        <div class="row row-cols-1 row-cols-sm-2 g-2">
-        {%endif%}
-        <div class="col">
-            <div class="card">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">{{k}}</h5>
-<!--                    <p class="card-text">{{k.author}}</p>-->
-<!--                    <p class="card-text">{{k.publisher}}</p>-->
-<!--                    <p class="card-text">{{k.author}}</p>-->
-<!--                    <p class="card-text">{{k.description}}</p>-->
+            <!--SECOND FEATURE-->
+            <div class="col d-flex align-items-start" style="padding-left: 30px;padding-right: 30px;">
+                <div class="icon-square bg-light text-dark flex-shrink-0 me-3">
+
+                    <i class="fas fa-drafting-compass"
+                        style="font-size: 90px; background-color: white; color: rgb(80, 80, 80);"></i>
+                </div>
+                <div>
+                    <h2>Uniqueness</h2>
+                    <p>Our products are made with the finest and ecofriendly material, jut the perfect fit you want!
+                    </p>
+                </div>
+            </div>
+
+            <!--THIRD FEATURE-->
+            <div class="col d-flex align-items-start" style="padding-left: 30px;padding-right: 30px;">
+                <div class="icon-square bg-light text-dark flex-shrink-0 me-3">
+                    <i class="far fa-clock"
+                        style="font-size: 90px; background-color: white; color: rgb(80, 80, 80);"></i>
+                </div>
+                <div>
+                    <h2>Utilitarian</h2>
+                    <p>The main purpose of <strong>Kronos</strong> is to make products which save your time,
+                        increase you productivity by
+                        adding features which are most beneficial.</p>
                 </div>
             </div>
         </div>
-        {%endfor%}
 
-    </div>
+        <div class="row row-cols-1 row-cols-md-2">
+            <div class="col mb-4">
+                <div class="card">
+                    <img src="../static/colleen.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">It Ends With Us</h5>
+                        <p class="card-text">Colleen Hoover</p>
+                        <p class="card-text">Simon & Schuser India</p>
+                        <p class="card-text">978-1501110368</p>
+                        <p class="card-text">With this bold and deeply personal novel, Colleen Hoover delivers a
+                            heart-wrenching story that breaks exciting new
+                            ground for her as a writer. Combining a captivating romance with a cast of all-too-human
+                            characters, it ends with us is
+                            an unforgettable tale of love that comes at the ultimate price.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col mb-4">
+                <div class="card">
+                    <img src="../static/17157681.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">The Hobbit</h5>
+                        <p class="card-text">J.R.R. Tolkien</p>
+                        <p class="card-text">Harper Collins</p>
+                        <p class="card-text">978-0008118044</p>
+                        <p class="card-text"> The
+                            prelude to The Lord of the
+                            Rings, The Hobbit has sold many millions of copies since its publication in 1937,
+                            establishing itself as one of the most
+                            beloved and influential books of the twentieth century.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col mb-4">
+                <div class="card">
+                    <img src="../static/dale.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">How to Stop Worrying and Start Living: Time-Tested Methods for Conquering
+                            Worry</h5>
+                        <p class="card-text">Dale Carnegie</p>
+                        <p class="card-text">Fingerprint! Publishing</p>
+                        <p class="card-text">978-1501110368</p>
+                        <p class="card-text">If worry fills up your mind and you end up struggling to conquer it, this
+                            book is all you need!“The secret of being
+                            miserable is to have the leisure to bother about whether you are happy or not.”From the
+                            fundamental facts that one must
+                            know about worry to the techniques in analyzing it, this book introduces ways to prevent
+                            fatigue and worry and cultivate
+                            a mental attitude that will bring peace and happiness.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col mb-4">
+                <div class="card">
+                    <img src="../static/rich.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Rich Dad Poor Dad:</h5>
+                        <p class="card-text">Robert Kiyosaki</p>
+                        <p class="card-text">Plata Publishing
+                        </p>
+                        <p class="card-text">978-1501110368</p>
+                        <p class="card-text">It's been nearly 25 years since Robert Kiyosaki’s Rich Dad Poor Dad first
+                            made waves in the Personal Finance arena.
+                            It has since become the #1 Personal Finance book of all time... translated into dozens of
+                            languages and sold around the
+                            world.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-</div>
 
-{% comment %} {% endfor %} {% endcomment %}
-        {% endfor %}
-
-{% endblock body %}
+        {% endblock body %}

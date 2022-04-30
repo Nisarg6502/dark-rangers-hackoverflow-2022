@@ -2,124 +2,212 @@
 
 {% load static %}
 
+{% block stylesheet %}{% static 'dashboard.css' %}{% endblock stylesheet %}
 
 
 {% block title %}Index{% endblock title %}
 
 {% block body %}
+<div class="container"><br>
+    <section>
+        <h3 class="text-center">Dashboard</h3>
+        <div class="container pt-5 pb-2">
+            <div class="row d-flex justify-content-center align-items-center">
+                <div class="col">
+                    <div class="card mb-3 neumorphism" style="border-radius: .5rem; border-color: transparent;">
+                        <div class="row g-0">
+                            <div class="col-md-4 gradient-custom text-center text-white"
+                                style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
+                                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
+                                    alt="Avatar" class="img-fluid my-5" style="width: 80px;" />
+                                <h5>{{user.first_name}} {{user.last_name}}</h5>
+                                <p>Bio</p>
+                                <div>
+                                    <div class="text-danger mb-1 me-2">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                    </div>
+                                    <span>31</span>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body p-4">
+                                    <h4>Information</h4>
+                                    <hr class="mt-0 mb-4">
+                                    <div class="row pt-1">
+                                        <div class="col-6 mb-3">
+                                            <h6>Email</h6>
+                                            <p class="text-muted">info@example.com</p>
+                                        </div>
+                                        <div class="col-6 mb-3">
+                                            <h6>Phone</h6>
+                                            <p class="text-muted">1234567890</p>
+                                        </div>
+                                    </div>
+                                    <div class="row pt-1">
+                                        <div class="col-6 mb-3">
+                                            <h6>Gender</h6>
+                                            <p class="text-muted">Gender</p>
+                                        </div>
+                                        <div class="col-6 mb-3">
+                                            <h6>Age</h6>
+                                            <p class="text-muted">Number</p>
+                                        </div>
+                                    </div>
+                                    <h6>Address</h6>
+                                    <p class="text-muted">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id
+                                        maiores error odit cupiditate saepe iusto, explicabo distinctio, ad recusandae
+                                        ducimus officia. Recusandae temporibus vitae aut sit natus porro quidem
+                                        accusantium!</p>
+                                </div>
+                            </div>
 
-<div class="container">
 
-    {% for range1,range2,book in allBooks %}
+                        </div>
 
-
-    {% comment %} {%for j in range1%} {% endcomment %}
-    <div class="row row-cols-1 row-cols-md-2 g-4">
-
-        {%for k in book%}
-        {% if forloop.counter|divisibleby:4 and forloop.counter > 0 and not forloop.last %}
-        </div>
-        <div class="row row-cols-1 row-cols-sm-2 g-2">
-        {%endif%}
-        <div class="col">
-            <div class="card">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">{{k}}</h5>
-                    <p class="card-text">{{k.author}}</p>
-                    <p class="card-text">{{k.publisher}}</p>
-                    <p class="card-text">{{user.email}}</p>
-                    <p class="card-text">{{k.description}}</p>
+                    </div>
                 </div>
             </div>
         </div>
-        {%endfor%}
+        <div class="container pt-4">
+            <div class="row d-flex justify-content-center align-items-center">
+                <div class="card p-2 neumorphism" style="border-radius:0.5rem ; border-color: transparent;">
+                    <h4 class="text-center">Books added</h4>
+                    <hr class="mt-0 mb-4">
+                    <!-- <div class="row pt-1">
+                        <div class="col-6 mb-3">
+                            <h6>Recent</h6>
+                            <p class="text-muted">Lorem ipsum</p>
+                        </div>
+                        <div class="col-6 mb-3">
+                            <h6>Most Viewed</h6>
+                            <p class="text-muted">Dolor sit amet</p>
+                        </div>
+                    </div>
+                </div> -->
+                    <div class="container">
 
-    </div>
+                        {% for range1,range2,book in allBooks %}
 
-</div>
 
-{% comment %} {% endfor %} {% endcomment %}
-        {% endfor %}
+                        {% comment %} {%for j in range1%} {% endcomment %}
+                        <div class="row row-cols-1 row-cols-md-2 g-4">
 
-<button type="button" class="btn btn1" data-bs-toggle="modal" data-bs-target="#addbook">
-    Add Book
-</button>
+                            {%for k in book%}
+                            {% if forloop.counter|divisibleby:4 and forloop.counter > 0 and not forloop.last %}
+                        </div>
+                        <div class="row row-cols-1 row-cols-sm-2 g-2">
+                            {%endif%}
+                            <div class="col ">
+                                <div class="card floatcard" style="border-color: transparent;">
+                                    <img src="..." class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{k}}</h5>
+                                        <p class="card-text">{{k.author}}</p>
+                                        <p class="card-text">{{k.publisher}}</p>
+                                        <p class="card-text">{{k.author}}</p>
+                                        <p class="card-text">{{k.description}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            {%endfor%}
 
-   <!-- Modal -->
-<div class="modal fade" id="addbook" tabindex="-1" aria-labelledby="LoginModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
+                        </div>
+
+                    </div>
+
+                    {% comment %} {% endfor %} {% endcomment %}
+                    {% endfor %}
+                    <br>
+                    <button style="width: fit-content; margin: auto;" type="button"
+                        class="mt-2 btn btn1 btn-outline-success" align="center" data-bs-toggle="modal"
+                        data-bs-target="#addbook">
+                        Add Book
+                    </button>
+                </div>
+            </div>
+    </section>
+
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="addbook" tabindex="-1" aria-labelledby="LoginModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
                 <div class="modal-header text-dark bg1">
                     <h5 class="modal-title" id="LoginModalLabel">Login</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body text-dark bg1">
                     <!--Form-->
-                     <form action="" method="post" style="text-align: center;">
-        {% csrf_token %}
-        <div class="main2" style="margin-left: 50px; margin-right: 50px;">
+                    <form action="" method="post" style="text-align: center;">
+                        {% csrf_token %}
+                        <div class="main2" style="margin-left: 50px; margin-right: 50px;">
 
-                <div class="col-md">
-                    <div class="form-floating">
-                        <input type="text" class="form-control" name="book_name" id="book_name">
-                        <label for="book_name">Enter Book Name</label>
-                    </div>
-                </div>
+                            <div class="col-md">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" name="book_name" id="book_name">
+                                    <label for="book_name">Enter Book Name</label>
+                                </div>
+                            </div>
 
-                <div class="mb-3">
-                  <label for="image" class="form-label">image</label>
-                  <input class="form-control" type="file" id="image" name="image">
-                </div>
+                            <div class="mb-3">
+                                <label for="image" class="form-label">image</label>
+                                <input class="form-control" type="file" id="image" name="image">
+                            </div>
 
-                <div class="col-md">
-                    <div class="form-floating">
-                        <input type="text" class="form-control" name="author" id="author">
-                        <label for="author">Enter Author</label>
-                    </div>
-                </div>
+                            <div class="col-md">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" name="author" id="author">
+                                    <label for="author">Enter Author</label>
+                                </div>
+                            </div>
 
-                <div class="col-md">
-                    <div class="form-floating">
-                        <input type="text" class="form-control" name="publishing_house" id="publishing_house">
-                        <label for="publishing_house">Enter publishing_house</label>
-                    </div>
-                </div>
+                            <div class="col-md">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" name="publishing_house"
+                                        id="publishing_house">
+                                    <label for="publishing_house">Enter publishing_house</label>
+                                </div>
+                            </div>
 
-                <div class="col-md">
-                    <div class="form-floating">
-                        <input type="text" class="form-control" name="ISBN_number" id="ISBN_number">
-                        <label for="ISBN_number">Enter ISBN_number</label>
-                    </div>
-                </div>
+                            <div class="col-md">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" name="ISBN_number" id="ISBN_number">
+                                    <label for="ISBN_number">Enter ISBN_number</label>
+                                </div>
+                            </div>
 
-                <select class="form-select" aria-label="Default select example" name="availability">
-                  <option selected>Lend</option>
-                  <option value="1">Exchange</option>
-                  <option value="2">Donate</option>
-                </select>
+                            <select class="form-select" aria-label="Default select example" name="availability">
+                                <option selected>Lend</option>
+                                <option value="1">Exchange</option>
+                                <option value="2">Donate</option>
+                            </select>
 
-            <div class="mb-3">
-                <div class="form-floating">
+                            <div class="mb-3">
+                                <div class="form-floating">
 
-                    <input type="text" name="description" class="form-control" id="description" style="height: 200px;">
-                    <label for="description">Book Description</label>
-                </div>
-            </div>
+                                    <input type="text" name="description" class="form-control" id="description"
+                                        style="height: 200px;">
+                                    <label for="description">Book Description</label>
+                                </div>
+                            </div>
 
 
-        </div>
+                        </div>
 
-        <!--Send Message Button-->
-        <button type="submit" class="btn  btn-outline-secondary" style="margin: 10px;">
-            Send message
-        </button>
+                        <!--Send Message Button-->
+                        <button type="submit" class="btn  btn-outline-secondary" style="margin: 10px;">
+                            Send message
+                        </button>
 
-        <!--Reset Form Button-->
-        <button type="reset" class="btn btn-outline-secondary">
-            Reset form
-        </button>
-    </form>
+                        <!--Reset Form Button-->
+                        <button type="reset" class="btn btn-outline-secondary">
+                            Reset form
+                        </button>
+                    </form>
                 </div>
                 <div class="modal-footer text-dark bg1">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -127,15 +215,13 @@
             </div>
         </div>
     </div>
-    </div>
-
-<div class="container1"><br>
-
-    <br>
+</div>
+<br>
 </div>
 
 
 
+
+
+
 {% endblock body %}
-
-
