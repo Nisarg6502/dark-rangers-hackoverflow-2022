@@ -8,8 +8,55 @@
 
 {% block body %}
 
-<div class="container1"><br>
-    <form action="/postbook/" method="post" style="text-align: center;">
+<div class="container">
+
+    {% for range1,range2,book in allBooks %}
+
+
+    {% comment %} {%for j in range1%} {% endcomment %}
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+
+        {%for k in book%}
+        {% if forloop.counter|divisibleby:4 and forloop.counter > 0 and not forloop.last %}
+        </div>
+        <div class="row row-cols-1 row-cols-sm-2 g-2">
+        {%endif%}
+        <div class="col">
+            <div class="card">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{k}}</h5>
+                    <p class="card-text">{{k.author}}</p>
+                    <p class="card-text">{{k.publisher}}</p>
+                    <p class="card-text">{{k.author}}</p>
+                    <p class="card-text">{{k.description}}</p>
+                </div>
+            </div>
+        </div>
+        {%endfor%}
+
+    </div>
+
+</div>
+
+{% comment %} {% endfor %} {% endcomment %}
+        {% endfor %}
+
+<button type="button" class="btn btn1" data-bs-toggle="modal" data-bs-target="#addbook">
+    Add Book
+</button>
+
+   <!-- Modal -->
+<div class="modal fade" id="addbook" tabindex="-1" aria-labelledby="LoginModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+                <div class="modal-header text-dark bg1">
+                    <h5 class="modal-title" id="LoginModalLabel">Login</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-dark bg1">
+                    <!--Form-->
+                     <form action="" method="post" style="text-align: center;">
         {% csrf_token %}
         <div class="main2" style="margin-left: 50px; margin-right: 50px;">
 
@@ -73,9 +120,22 @@
             Reset form
         </button>
     </form>
+                </div>
+                <div class="modal-footer text-dark bg1">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+<div class="container1"><br>
+
     <br>
 </div>
 
 
+
 {% endblock body %}
+
 

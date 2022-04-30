@@ -6,10 +6,82 @@ from .models import CustomUser, Contact, Book
 
 # Create your views here.
 def index(request):
-    return render(request, 'index.html')
+    allBooks = []
+    catprods = Book.objects.values('book_name')
+    # print(catprods)
+    cats = {item['book_name'] for item in catprods}
+    print(cats)
+    for cat in cats:
+        # print(cat)
+        book = Book.objects.filter(book_name=cat)
+        # print(book)
+        n = len(book)
+        # print(n)
+        if (n % 2 == 0):
+            outer = int(n / 2)
+            # print(outer)
+        else:
+            outer = n // 2 + 1
+
+    allBooks.append([cats, range(len(cats)), range(n), book])
+
+    # allProds = Product.objects.all()
+    # print(allProds)
+    print(allBooks)
+    params = {'allBooks': allBooks}
+
+    return render(request, 'index.html', params)
 
 def dashboard(request):
-    return render(request, 'dashboard.html')
+
+    if request.method == "POST":
+        book_name = request.POST.get('book_name', '')
+        image = request.POST.get('image', '')
+        author = request.POST.get('author', '')
+        publishing_house = request.POST.get('publishing_house', '')
+        ISBN_number = request.POST.get('ISBN_number', '')
+        availability = request.POST.get('availability')
+        description = request.POST.get('description')
+        provider = request.user
+        # provider = current_user.username
+        book = Book(provider=provider, book_name=book_name, image=image, author=author, publishing_house=publishing_house, ISBN_number=ISBN_number, availability=availability, description=description)
+        book.save()
+
+    allBooks = []
+    provider = request.user.id
+    print(provider)
+    Userprods = Book.objects.values('provider')
+    # print(Userprods)
+    cats = {item['provider'] for item in Userprods}
+    print(cats)
+
+
+    for cat in cats:
+        # print(cat)
+        if (cat == request.user.id):
+            print(request.user.id)
+            book = Book.objects.filter(provider=cat)
+            print(book)
+
+            n = len(book)
+            # print(n)
+            if (n % 2 == 0):
+                outer = int(n / 2)
+                # print(outer)
+            else:
+                outer = n // 2 + 1
+            allBooks.append([range(outer), range(n), book])
+
+            # allProds = Product.objects.all()
+            # print(allProds)
+            params = {'allBooks': allBooks}
+
+            return render(request, 'dashboard.html', params)
+        else:
+            continue
+            return render(request, 'dashboard.html')
+
+
 
 def profile(request):
     return render(request, 'profile.html')
