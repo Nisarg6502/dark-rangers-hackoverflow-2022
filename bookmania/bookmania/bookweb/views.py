@@ -88,7 +88,13 @@ def profile(request):
     return render(request, 'profile.html')
 
 def product(request):
-    return render(request, 'product.html')
+    allUsers = CustomUser.objects.all()
+
+
+
+    params = {'allUsers': allUsers}
+    print(params)
+    return render(request, 'product.html', params)
 
 def contact(request):
     thank = False
